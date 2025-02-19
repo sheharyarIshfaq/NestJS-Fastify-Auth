@@ -1,0 +1,27 @@
+model User {
+  id             Int       @id @default(autoincrement())
+  email          String    @unique
+  password       String?
+  fullname       String
+  createdAt      DateTime  @default(now())
+  profilePicture String?
+  phone          String?
+  address        String?
+  updatedAt      DateTime  @updatedAt
+  socialAuth     String?
+  role           Role      @default(USER)
+  provider       Provider
+  otp            Otp[]
+  session        Session[]
+}
+
+enum Provider {
+  EMAIL
+  GOOGLE
+  FACEBOOK
+}
+
+enum Role {
+  USER
+  ADMIN
+}

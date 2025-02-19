@@ -1,0 +1,9 @@
+model Otp {
+  id        Int      @id @default(autoincrement())
+  code      String
+  expiresAt DateTime
+  userId    Int
+  createdAt DateTime @default(now())
+  used      Boolean  @default(false)
+  user      User     @relation(fields: [userId], references: [id])
+}

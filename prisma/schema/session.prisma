@@ -1,0 +1,15 @@
+model Session {
+  id           String    @id @default(uuid())
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       Int
+  token        String    @unique  
+  lastActive   DateTime  @default(now()) 
+  expiresAt    DateTime  
+  isValid      Boolean   @default(true)  
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([token])
+  @@index([isValid])
+}
